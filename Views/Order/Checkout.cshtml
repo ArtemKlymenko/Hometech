@@ -1,0 +1,69 @@
+﻿@model Hometech.Models.OrderViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "Оформление заказа";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h3>Адрес доставки</h3>
+            <div class="form-group">
+                <label>Город</label>
+                <input asp-for="City" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Улица</label>
+                <input asp-for="Street" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>Номер дома</label>
+                <input asp-for="HomeNumber" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="RememberAddress" />
+                        Сохранить адрес доставки
+                    </label>
+                </div>
+            </div>
+            <h3>Контактные данные</h3>
+            <div class="form-group">
+                <label>Имя</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input asp-for="Surname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Электронная почта</label>
+                <div class="input-group">
+                    <input asp-for="Email" class="form-control"/>
+                    <span class="input-group-addon" aria-hidden="true">
+                        <span class="glyphicon glyphicon-ok text-success">
+                        </span>
+                    </span>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Номер телефона</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="RememberPersonal" />
+                        Сохранить данные профиля
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Оформить заказ</button>
+        </form>
+    </div>
+</div>

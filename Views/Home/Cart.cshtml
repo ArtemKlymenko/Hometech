@@ -1,0 +1,19 @@
+﻿@using Hometech.Controllers
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h2>Ваша корзина:</h2>
+<table class="table">
+    <tr><th>Товар</th><th>Цена</th><th>Доступность</th><th>Удалить из корзины</th></tr>
+    @foreach (ProductsInfo p in Model)
+    {
+        <tr><td>@p.category @p.manufacturer @p.vendor_code</td><td>@p.price</td>
+            @if (p.is_available){<td>В наличии</td>}
+            else {<td>Товар закончился</td>}
+            <td><a asp-controller="Home" asp-action="DeleteItem" asp-route-vendorCode="@p.vendor_code">Удалить</a></td>
+        </tr>
+    }
+</table>
+<a asp-controller="Home" asp-action="ClearCart">Очистить корзину</a>
+<a asp-controller="Order" asp-action="Products">Оформить заказ</a>

@@ -1,0 +1,30 @@
+﻿@using Hometech.Controllers
+@{
+    ViewData["Title"] = "Все товары";
+}
+
+<h2>Информация о товарах на складе:</h2>
+<table class="table">
+    <tr><th>Категория</th><th>Производитель</th><th>Артикул товара</th><th>Цена</th>
+    @if (User.IsInRole("Клиент"))
+    {
+        <th>В корзину</th>
+    }
+    else {<th>Доступность</th>}
+    </tr>
+    @foreach (ProductsInfo p in Model)
+    {
+        <tr><td>@p.category</td><td>@p.manufacturer</td><td>@p.vendor_code</td><td>@p.price</td>
+            @if(!p.is_available){<td>Товар закончился</td>}
+            else if (User.IsInRole("Клиент"))
+            {
+                @if (!p.in_cart)
+                {
+                    <td><a asp-controller="Home" asp-action="AddItem" asp-route-vendorCode=@p.vendor_code>Добавить</a></td>
+                }
+                else{<td>В корзине</td>}
+            }
+            else{<td>В наличии</td>}
+        </tr>
+    }         
+</table>

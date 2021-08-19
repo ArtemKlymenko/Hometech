@@ -1,0 +1,10 @@
+﻿@using Hometech.Views.Manage
+<ul class="nav nav-inline">
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a class="nav-link text-dark" asp-action="EditPersonal">Профиль</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a class="nav-link text-dark" asp-action="ChangePassword">Пароль</a></li>
+    @if (User.IsInRole("Клиент"))
+    {
+        <li class="@ManageNavPages.ChangeDeliveryAddressNavClass(ViewContext)"><a class="nav-link text-dark" asp-action="ChangeDeliveryAddress">Адрес доставки</a></li>
+    }
+</ul>
+
